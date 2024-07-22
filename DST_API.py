@@ -175,3 +175,16 @@ class DstApi:
                 "Time variable",
             ],
         )
+    
+    def get_table_unit(self, language="en") -> str:
+        """
+        Fetches and returns the unit of measurement for the table.
+
+        Returns:
+        ----------
+        The unit of measurement as a string.
+        """
+        if self._tableinfo is None:
+            self._tableinfo = self._get_tableinfo(language=language)
+
+        return self._tableinfo.get('unit', 'unit not found')
