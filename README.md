@@ -1,10 +1,11 @@
 This notebook uses an API to extract data from DST (Statistikbanken). The py-file draws on the methods from https://github.com/alemartinello/dstapi. 
 
-For each table from DST the setup in the notebook is as follows:
+For each table from DST the steps underneath are present:
 1. Table summary
-2. Display of variable levels to help you find the relevant variable names 
-3. Gathering relevant variables to df                                               
-4. Changing the df to a wide df                                    
-5. Export to individual excel file
+2. Display of variable levels to help you to find the relevant variable codes 
+3. Fetch the unit for the table
+4. Gathering relevant variables to df                                               
+5. Changing the df from a long df to a wide one                                    
+6. Export to individual excel file 
 
 Lastly all the tables are exported as one excel file with multiple sheets.  
