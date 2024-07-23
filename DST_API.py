@@ -6,6 +6,8 @@ import warnings
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Font
+import locale
+import numpy as np
 
 
 import requests
@@ -190,3 +192,4 @@ class DstApi:
             self._tableinfo = self._get_tableinfo(language=language)
 
         return self._tableinfo.get('unit', 'unit not found')
+    
