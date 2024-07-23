@@ -121,8 +121,6 @@ class DstApi:
             return pd.read_csv(StringIO(r.text), sep=";", decimal=",")
         else:
             return r
-        
-# Im not sure if we use the code underneath at the moment #
 
     def _get_tableinfo(self, language="da") -> dict:
         tableinfo = self._tableinfo = requests.get(
