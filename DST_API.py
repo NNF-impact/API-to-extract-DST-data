@@ -14,10 +14,11 @@ import requests
 
 class DstApi:
     def __init__(self, tablename) -> None:
-        self.apiip = "https://api.statbank.dk/v1"
-        self.tablename = str(tablename).lower()
-        self._tableinfo = None
+        self.apiip = "https://api.statbank.dk/v1" #Establishes the connection to statistikbanken through the API
+        self.tablename = str(tablename).lower() #Makes the variable names in lower case and makes it possible to connect to the individual table in statistiknaken through their tablename.
+        self._tableinfo = None #preparatory step for later. 
 
+    # Gives a short summary of the dataset.
     def tablesummary(self, verbose=True, language="da") -> pd.DataFrame:
         """
         Returns a summary of a published DST table containing the description of
@@ -36,6 +37,7 @@ class DstApi:
         table = self._wrap_tableinfo_variables(self._tableinfo)
         return table
 
+    # Shows the possible variables to download.
     def variable_levels(self, varname, language="da") -> pd.DataFrame:
         """
         Returns a DataFrame with the possible values of `varname` in the table.
@@ -72,6 +74,7 @@ class DstApi:
             )
             return err
 
+    # The function that downloads tables according to API call.
     def get_data(
         self, params=None, language="da", as_DataFrame=True, override_warning=False
     ) -> pd.DataFrame:
@@ -131,6 +134,7 @@ class DstApi:
         ).json()
         return tableinfo
 
+# _define_base_params is not used as it is right now, but is kept incase it could be usefull later on
     def _define_base_params(self, language="da") -> dict:
         """
         Return a parameter dictionary resulting in the download of an entire
@@ -154,7 +158,9 @@ class DstApi:
         data table.
         """
         return self._define_base_params(language=language)
+# end of _define_base_params
 
+    # _wrap_table_info is used to construct summary tables.
     @staticmethod
     def _wrap_tableinfo_variables(tiresponse) -> pd.DataFrame:
         toplist = []
@@ -178,8 +184,9 @@ class DstApi:
                 "Last value label",
                 "Time variable",
             ],
-        )
-    
+        ) 
+
+    # get_table_unit is used to have the "enhed" (unit) from dst in the excel file aswell. 
     def get_table_unit(self, language="en") -> str:
         """
         Fetches and returns the unit of measurement for the table.
