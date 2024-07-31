@@ -14,9 +14,9 @@ import requests
 
 class DstApi:
     def __init__(self, tablename) -> None:
-        self.apiip = "https://api.statbank.dk/v1" #Establishes the connection to statistikbanken through the API
-        self.tablename = str(tablename).lower() #Makes the variable names in lower case and makes it possible to connect to the individual table in statistiknaken through their tablename.
-        self._tableinfo = None #preparatory step for later. 
+        self.apiip = "https://api.statbank.dk/v1" # Base URL for connecting to the Statistikbanken API.
+        self.tablename = str(tablename).lower() # Store the table name in lowercase to ensure consistency and ease of access. Makes it possible to connect to the individual table in statistikbanken through their tablename.
+        self._tableinfo = None # Initialize _tableinfo as None; this will be used later to store table metadata.
 
     # Gives a short summary of the dataset.
     def tablesummary(self, verbose=True, language="da") -> pd.DataFrame:
